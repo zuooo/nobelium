@@ -1,11 +1,7 @@
 import Image from 'next/image'
 import Container from '@/components/Container'
 import { useRouter } from 'next/router'
-import {
-  NotionRenderer,
-  Equation,
-  Code
-} from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
@@ -77,7 +73,8 @@ const FullWidthLayout = ({ children, blockMap, frontMatter }) => {
               recordMap={blockMap}
               components={{
                 equation: Equation,
-                code: Code
+                code: Code,
+                collectionRow: CollectionRow
               }}
             />
           </div>

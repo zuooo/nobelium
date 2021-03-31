@@ -1,11 +1,7 @@
 import Image from 'next/image'
 import Container from '@/components/Container'
 import { useRouter } from 'next/router'
-import {
-  NotionRenderer,
-  Equation,
-  Code
-} from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
@@ -18,6 +14,10 @@ const GitalkComponent = dynamic(
   },
   { ssr: false }
 )
+
+const mapPageUrl = (id) => {
+  return 'https://www.notion.so/' + id.replace(/-/g, '')
+}
 
 const DefaultLayout = ({ children, blockMap, frontMatter }) => {
   const locale = useLocale()
@@ -76,8 +76,10 @@ const DefaultLayout = ({ children, blockMap, frontMatter }) => {
               recordMap={blockMap}
               components={{
                 equation: Equation,
-                code: Code
+                code: Code,
+                collectionRow: CollectionRow
               }}
+              mapPageUrl={mapPageUrl}
             />
           </div>
         )}
